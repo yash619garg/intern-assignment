@@ -42,7 +42,7 @@ app.use("/api/users", userRouter)
 app.use("/api/images", imageRoute)
 
 
-app.use(express.static(path.join(__dirname, './frontend/dist')));
+app.use(express.static(path.join(__dirname, './dist')));
 // app.use(express.static(path.join(__dirname, './frontend')));
 app.use((req, res, next) => {
     if (req.url.endsWith('.jsx') || req.url.endsWith('.js')) {
@@ -54,10 +54,10 @@ app.use((req, res, next) => {
 
 app.get("*", (req, res) => {
     // res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
-    res.sendFile(path.join(__dirname, 'frontend', "dist", 'index.html'));
+    res.sendFile(path.join(__dirname, "dist", 'index.html'));
 })
 
-app.use('/js', express.static(path.join(__dirname, '/frontend/dist/js'), {
+app.use('/js', express.static(path.join(__dirname, '/dist/js'), {
     // Set content type explicitly to application/javascript
     setHeaders: (res, filePath) => {
         if (path.extname(filePath) === '.js') {
